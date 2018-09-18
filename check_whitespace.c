@@ -66,7 +66,15 @@ int is_clean(char* str) {
   // 0 if they're equal, and a positive value if the first is
   // greater than the second.
   result = strcmp(str, cleaned);
+ 
+  // We check if cleaned is an empty string
+  // We do this because free doesn't like dealing with empty stings
+  if (strcmp(cleaned, "") == 0) {
+    return result == 0;
+  }
 
+  // We use free to clean out cleaned to avoid memory leak issues
+  free(cleaned);
   return result == 0;
 }
 
